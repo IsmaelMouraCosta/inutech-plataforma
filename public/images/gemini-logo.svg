@@ -1,0 +1,29 @@
+<svg width="256px" height="256px" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" version="1.1">
+  <!-- 
+    Este é um arquivo SVG (Scalable Vector Graphics) de um logotipo estilizado.
+    Ele foi criado com formas vetoriais e gradientes, o que permite que seja 
+    redimensionado para qualquer tamanho sem perder a qualidade.
+  -->
+  <defs>
+    <!-- Define o gradiente de cores principal para a forma de fundo -->
+    <linearGradient id="geminiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#89B3F7;" />   <!-- Azul Claro -->
+      <stop offset="50%" style="stop-color:#A076F4;" />   <!-- Roxo -->
+      <stop offset="100%" style="stop-color:#F476A2;" /> <!-- Rosa -->
+    </linearGradient>
+    
+    <!-- Define um gradiente mais claro para o brilho no centro -->
+    <linearGradient id="glintGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+       <stop offset="0%" style="stop-color:#C7A7F5;" /> <!-- Roxo Claro -->
+       <stop offset="100%" style="stop-color:#F5A7C2;" /> <!-- Rosa Claro -->
+    </linearGradient>
+  </defs>
+
+  <!-- Desenha a forma principal da estrela de 4 pontas com lados curvos -->
+  <!-- A forma é criada usando uma única 'path' com curvas de Bézier cúbicas (C) -->
+  <path fill="url(#geminiGradient)" d="M100,0 C110,50 150,90 200,100 C150,110 110,150 100,200 C90,150 50,110 0,100 C50,90 90,50 100,0 Z" />
+
+  <!-- Desenha a forma de brilho menor no centro, também com curvas suaves -->
+  <path fill="url(#glintGradient)" d="M100,40 C105,70 130,95 160,100 C130,105 105,130 100,160 C95,130 70,105 40,100 C70,95 95,70 100,40 Z" />
+
+</svg>

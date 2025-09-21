@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="40" height="40" viewBox="0 0 61.375 51.125" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+  <g id="iNuTech-Icon" serif:id="iNuTech Icon">
+    <g id="Retângulo-arredondado" serif:id="Retângulo arredondado">
+      <path id="Principal-recortado" serif:id="Principal recortado" d="M33.016,48.755l5.726,-0c3.195,-0 6.056,-1.443 7.966,-3.713l-13.692,-21.868l-0,25.581Zm-25.29,-21.158l-0,0l-0,19.856c-3.211,-1.767 -5.384,-5.185 -5.384,-9.106l0,-25.946c0,-5.744 4.664,-10.408 10.408,-10.408l25.992,0c5.745,0 10.408,4.664 10.408,10.408l0,20.38l-15.988,-25.545l-10.146,0l-0,41.519l-5.29,-0l-0,-21.158l-0,0c-0.008,-2.753 -2.245,-4.986 -5,-4.986c-2.755,0 -4.993,2.233 -5,4.986Zm5,-20.291c2.759,-0 5,2.24 5,5c-0,2.759 -2.241,5 -5,5c-2.76,-0 -5,-2.241 -5,-5c-0,-2.76 2.24,-5 5,-5Z" style="fill:#1e293b;"/>
+    </g>
+    <g id="iNuTech-Principal" serif:id="iNuTech Principal">
+      <g id="N">
+        <path id="Perna-Negra-Recortada" serif:id="Perna Negra Recortada" d="M59.141,48.757l-0,-41.521l-10.116,0l0,25.354l10.116,16.167Z" style="fill:#60A5FA;fill-opacity:0.5;"/>
+        <rect id="Perna-Branca" serif:id="Perna Branca" x="23.016" y="7.236" width="10" height="41.518" style="fill:#60A5FA;"/>
+        <path id="Junção-do-N" serif:id="Junção do N" d="M33.162,7.236l-10.125,0l25.988,41.521l10.116,-0l-25.979,-41.521Z" style="fill:#60A5FA;"/>
+      </g>
+      <g id="i">
+        <circle id="pingo-do-i" serif:id="pingo do i" cx="12.726" cy="12.306" r="5" style="fill:#60A5FA;"/>
+        <circle id="corpo-do-i" serif:id="corpo do i" cx="12.726" cy="27.611" r="5" style="fill:#60A5FA;"/>
+        <path d="M17.726,27.597l-10,0l-0,19.85l0.427,0.228l0.272,0.135l0.523,0.217l0.257,0.102l0.571,0.184l0.366,0.111l0.52,0.118l0.356,0.064l0.302,0.048l0.599,0.064l0.03,0.003l0.801,0.034l4.976,-0l-0,-21.158Z" style="fill:#60A5FA;"/>
+      </g>
+    </g>
+  </g>
+</svg>
