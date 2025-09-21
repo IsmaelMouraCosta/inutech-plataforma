@@ -1,8 +1,8 @@
-# iNuTech iCT - Plataforma de Pesquisa Científica v2025.9.2
+# iNuTech iCT - Plataforma de Pesquisa Científica v2025.9.3
 
 Uma plataforma moderna para divulgação científica, blog, revista científica e laboratórios virtuais do iNuTech iCT de Pesquisa Aplicada em Ciência, Tecnologia e Inovação.
 
-> **🎯 Versão 2025.9.2** - Plataforma otimizada e pronta para deploy no Vercel com Google Cloud como alternativa.
+> **🎯 Versão 2025.9.3** - Plataforma otimizada e pronta para deploy no Vercel com Google Cloud como alternativa.
 
 ## 🚀 Funcionalidades
 
