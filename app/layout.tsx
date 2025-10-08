@@ -5,6 +5,7 @@ import { Providers } from '@/components/providers'
 import { ThemeProvider } from '@/contexts/theme-context'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
+import { LGDPPopup } from '@/components/lgpd-popup'
 import { Toaster } from 'react-hot-toast'
 
 
@@ -64,6 +65,7 @@ export default function RootLayout({
                 },
               }}
             />
+            <LGDPPopup />
           </ThemeProvider>
         </Providers>
       </body>

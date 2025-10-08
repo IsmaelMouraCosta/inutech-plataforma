@@ -1,5 +1,7 @@
 # Arquitetura Técnica - iNuTech iCT Plataforma
 
+> Projeto NCC 1701 - USS Enterprise
+
 ## 📋 Visão Geral
 
 A **iNuTech iCT Plataforma** é uma aplicação web moderna desenvolvida para divulgação científica, blog, revista científica e laboratórios virtuais do Instituto de Pesquisa Aplicada em Ciência, Tecnologia e Inovação.
@@ -172,7 +174,7 @@ inutech-plataforma/
 DATABASE_URL="file:./dev.db"
 
 # NextAuth
-NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_URL="http://localhost:17011"
 NEXTAUTH_SECRET="your-secret-key"
 
 # Google OAuth

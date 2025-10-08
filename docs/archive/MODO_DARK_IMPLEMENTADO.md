@@ -136,7 +136,7 @@ import { Logo } from '@/components/logo'
 - [x] Acessibilidade preservada
 
 ### 🧪 Como Testar
-1. **Acesse**: `http://localhost:3000`
+1. **Acesse**: `http://localhost:17011`
 2. **Clique** no botão de tema (ícone sol/lua)
 3. **Verifique** se a logo muda
 4. **Recarregue** a página para testar persistência

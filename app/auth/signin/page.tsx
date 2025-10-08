@@ -1,26 +1,53 @@
 'use client'
 
-import { signIn } from 'next-auth/react'
-import { useState } from 'react'
+import { signIn, getSession } from 'next-auth/react'
+import { useState, useEffect } from 'react'
 import { LogoSvg } from '@/components/logo-svg'
+import { AuthError } from '@/components/auth-error'
 import { AlertCircle, Mail, Lock, ArrowRight } from 'lucide-react'
 
 export default function SignInPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [configError, setConfigError] = useState(false)
+
+  useEffect(() => {
+    // Verificar se há erro de configuração na URL
+    const urlParams = new URLSearchParams(window.location.search)
+    const errorParam = urlParams.get('error')
+    
+    if (errorParam === 'Configuration' || errorParam === 'OAuthCallback') {
+      setConfigError(true)
+    }
+  }, [])
 
   const handleGoogleSignIn = async () => {
     setIsLoading(true)
     setError('')
 
     try {
-      await signIn('google', {
-        callbackUrl: '/dashboard'
+      const result = await signIn('google', {
+        callbackUrl: '/dashboard',
+        redirect: false
       })
+
+      if (result?.error) {
+        if (result.error === 'Configuration') {
+          setConfigError(true)
+        } else {
+          setError('Erro de autenticação. Verifique suas credenciais.')
+        }
+      }
     } catch (error) {
       setError('Erro inesperado. Tente novamente.')
+    } finally {
       setIsLoading(false)
     }
+  }
+
+  // Se há erro de configuração, mostrar componente de erro
+  if (configError) {
+    return <AuthError error="Configuration" />
   }
 
   return (

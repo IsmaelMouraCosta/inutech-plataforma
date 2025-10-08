@@ -1,5 +1,57 @@
 # Changelog - iNuTech iCT Plataforma
 
+## [0.8.1] - 2025-10-01
+
+### 🔐 **RECUPERAÇÃO CRÍTICA: Sistema de Autenticação**
+
+#### ✅ **Arquivos Críticos Recuperados**
+
+- **`lib/auth-config.ts`** - Configuração completa do NextAuth.js
+  - Provider Google OAuth 2.0
+  - Sistema de controle de acesso por domínio
+  - Callbacks customizados (signIn, jwt, session)
+  - Eventos de logging
+  - Utilitários de autenticação
+  
+- **`.env.example`** - Template de variáveis de ambiente
+  - Documentação completa de todas as variáveis necessárias
+  - Instruções passo a passo
+  - Links para documentação
+
+#### 🔒 **Protocolo de Segurança Atualizado**
+
+- **`docs/SECURITY_PROTOCOL.md`** atualizado
+  - `lib/auth-config.ts` adicionado aos arquivos protegidos
+  - Procedimentos de backup para arquivos de configuração
+  - Regras de modificação reforçadas
+
+#### 📚 **Documentação Nova**
+
+- **`docs/deployment/AUTENTICACAO_RECUPERADA.md`** - Guia completo
+  - Funcionalidades implementadas
+  - Como configurar e usar
+  - Testes de verificação
+  - Troubleshooting
+  - Próximos passos
+
+#### 🎯 **Funcionalidades Restauradas**
+
+- ✅ Autenticação Google OAuth funcional
+- ✅ Controle de acesso por domínio (@inutech.org.br)
+- ✅ Sistema de administradores
+- ✅ Sessões JWT (30 dias)
+- ✅ Logging de eventos de autenticação
+- ✅ Callbacks de validação
+- ✅ Middleware de proteção de rotas
+
+#### ⚠️ **REQUER AÇÃO DO USUÁRIO**
+
+1. Configurar credenciais Google OAuth no `.env.local`
+2. Testar login com email permitido
+3. Verificar proteção de rotas
+
+---
+
 ## [0.8.0] - 2025-09-06
 
 ### 🎯 **Reorganização Completa do Projeto**

@@ -107,4 +107,158 @@
   .glass {
     @apply backdrop-blur-sm bg-white/80 border border-white/20;
   }
+
+  /* Estilos para o SVG Hero */
+  .hero-svg {
+    max-height: 400px;
+  }
+
+  /* Animações CSS para elementos flutuantes */
+  .floating-elements circle {
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+  }
+  
+  .float-1 { animation-name: float1; }
+  .float-2 { animation-name: float2; }
+  .float-3 { animation-name: float3; }
+  .float-4 { animation-name: float4; }
+  .float-5 { animation-name: float5; }
+  
+  @keyframes float1 {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-20px) scale(1.1); }
+  }
+  
+  @keyframes float2 {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-15px) scale(1.05); }
+  }
+  
+  @keyframes float3 {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-25px) scale(1.15); }
+  }
+  
+  @keyframes float4 {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-18px) scale(1.08); }
+  }
+  
+  @keyframes float5 {
+    0% { transform: translateY(0px) scale(1); }
+    100% { transform: translateY(-22px) scale(1.12); }
+  }
+  
+  /* Animação do círculo principal */
+  .main-circle {
+    animation: pulse 4s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.05); opacity: 1; }
+  }
+  
+  /* Animação dos cards de tecnologia */
+  .tech-card {
+    animation: techFloat 3s ease-in-out infinite;
+  }
+  
+  @keyframes techFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+  
+  /* Animação das linhas de conexão */
+  .connection-lines path {
+    stroke-dasharray: 10 5;
+    animation: dash 3s linear infinite;
+  }
+  
+  @keyframes dash {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 15; }
+  }
+  
+  /* Animação das partículas */
+  .data-particles circle {
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+  }
+  
+  .particle-1 { animation-name: particle1; }
+  .particle-2 { animation-name: particle2; }
+  .particle-3 { animation-name: particle3; }
+  .particle-4 { animation-name: particle4; }
+  .particle-5 { animation-name: particle5; }
+  .particle-6 { animation-name: particle6; }
+  
+  @keyframes particle1 {
+    0%, 100% { transform: translate(0, 0); opacity: 0.8; }
+    50% { transform: translate(10px, -10px); opacity: 0.4; }
+  }
+  
+  @keyframes particle2 {
+    0%, 100% { transform: translate(0, 0); opacity: 0.7; }
+    50% { transform: translate(-8px, 12px); opacity: 0.3; }
+  }
+  
+  @keyframes particle3 {
+    0%, 100% { transform: translate(0, 0); opacity: 0.6; }
+    50% { transform: translate(12px, 8px); opacity: 0.2; }
+  }
+  
+  @keyframes particle4 {
+    0%, 100% { transform: translate(0, 0); opacity: 0.5; }
+    50% { transform: translate(-10px, -8px); opacity: 0.3; }
+  }
+  
+  @keyframes particle5 {
+    0%, 100% { transform: translate(0, 0); opacity: 0.8; }
+    50% { transform: translate(8px, -12px); opacity: 0.4; }
+  }
+  
+  @keyframes particle6 {
+    0%, 100% { transform: translate(0, 0); opacity: 0.7; }
+    50% { transform: translate(-12px, 10px); opacity: 0.3; }
+  }
+  
+  /* Animação dos hexágonos */
+  .hex-1, .hex-2 {
+    animation: rotate 8s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  /* Animação das linhas decorativas */
+  .decorative-lines path {
+    stroke-dasharray: 20 10;
+    animation: lineFlow 5s linear infinite;
+  }
+  
+  @keyframes lineFlow {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: 30; }
+  }
+  
+  /* Responsividade */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-svg * {
+      animation: none !important;
+    }
+  }
+
+  /* Modo escuro */
+  @media (prefers-color-scheme: dark) {
+    .hero-svg {
+      filter: brightness(0.9) contrast(1.1);
+    }
+  }
 }

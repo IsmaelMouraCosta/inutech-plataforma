@@ -2,10 +2,10 @@ import { Users, FileText, FlaskConical, TrendingUp } from 'lucide-react'
 import { ICON_SIZES } from '@/lib/constants'
 
 const stats = [
-  { id: 1, name: 'Pesquisadores Ativos', value: '50+', icon: Users },
-  { id: 2, name: 'Publicações Científicas', value: '100+', icon: FileText },
+  { id: 1, name: 'Pesquisadores Ativos', value: '30+', icon: Users },
+  { id: 2, name: 'Publicações Científicas', value: '50+', icon: FileText },
   { id: 3, name: 'Projetos em Andamento', value: '25+', icon: FlaskConical },
-  { id: 4, name: 'Taxa de Inovação', value: '85%', icon: TrendingUp },
+  { id: 4, name: 'Startup spin-off', value: '03', icon: TrendingUp },
 ]
 
 export function Stats() {

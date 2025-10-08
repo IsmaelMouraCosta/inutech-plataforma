@@ -1,193 +1,161 @@
-# 🔐 Configuração da Autenticação Google OAuth
+# 🔐 Configuração Google OAuth - iNuTech iCT
 
-## 📋 Pré-requisitos
+## 🚨 **PROBLEMA IDENTIFICADO**
 
-- Conta Google
-- Acesso ao Google Cloud Console
-- Domínio `inutech.org.br` configurado
+O erro 500 no login do Google está ocorrendo porque as variáveis de ambiente `GOOGLE_CLIENT_ID` e `GOOGLE_CLIENT_SECRET` estão com valores placeholder.
 
-## 🚀 Passo a Passo
+## 🛠️ **SOLUÇÃO**
 
-### **1. Criar Projeto no Google Cloud Console**
+### 1️⃣ **Configurar Google Cloud Console**
 
+#### **Passo 1: Acessar Google Cloud Console**
 1. Acesse [Google Cloud Console](https://console.cloud.google.com/)
 2. Faça login com sua conta Google
 3. Crie um novo projeto ou selecione um existente
-4. Ative a faturação (necessário para OAuth)
 
-### **2. Habilitar APIs Necessárias**
+#### **Passo 2: Ativar Google+ API**
+1. No menu lateral, vá para **APIs & Services** > **Library**
+2. Procure por **"Google+ API"**
+3. Clique em **Enable**
 
-1. Vá em **"APIs & Services" > "Library"**
-2. Procure e habilite:
-   - **Google+ API**
-   - **Google Identity API**
-   - **Google OAuth2 API**
+#### **Passo 3: Criar Credenciais OAuth 2.0**
+1. Vá para **APIs & Services** > **Credentials**
+2. Clique em **+ CREATE CREDENTIALS** > **OAuth client ID**
+3. Se for a primeira vez, configure a **OAuth consent screen**:
+   - **User Type**: External
+   - **App name**: iNuTech iCT Plataforma
+   - **User support email**: contato@inutech.org.br
+   - **Developer contact**: contato@inutech.org.br
 
-### **3. Configurar Tela de Consentimento OAuth**
+#### **Passo 4: Configurar OAuth Client**
+1. **Application type**: Web application
+2. **Name**: iNuTech iCT - Web Client
+3. **Authorized JavaScript origins**:
+   ```
+   http://localhost:17011
+   https://seu-dominio.vercel.app
+   ```
+4. **Authorized redirect URIs**:
+   ```
+   http://localhost:17011/api/auth/callback/google
+   https://seu-dominio.vercel.app/api/auth/callback/google
+   ```
 
-1. Vá em **"APIs & Services" > "OAuth consent screen"**
-2. Selecione **"External"**
-3. Preencha as informações:
+### 2️⃣ **Obter Credenciais**
 
-```
-App name: iNuTech iCT
-User support email: admin@inutech.org.br
-App logo: [Upload logo do iNuTech]
-App domain: inutech.org.br
-Developer contact information: admin@inutech.org.br
-```
+Após criar o OAuth client, você receberá:
+- **Client ID**: Uma string longa que começa com números
+- **Client Secret**: Uma string secreta
 
-4. Em **"Scopes"**, adicione:
+### 3️⃣ **Configurar Variáveis de Ambiente**
 
-   - `openid`
-   - `email`
-   - `profile`
-5. Em **"Test users"**, adicione emails de teste:
-
-   - `admin@inutech.org.br`
-   - `andre@inutech.org.br`
-   - `ismael@inutech.org.br`
-
-### **4. Criar Credenciais OAuth 2.0**
-
-1. Vá em **"APIs & Services" > "Credentials"**
-2. Clique em **"Create Credentials" > "OAuth 2.0 Client IDs"**
-3. Selecione **"Web application"**
-4. Configure:
-
-```
-Name: iNuTech Web Client
-
-Authorized JavaScript origins:
-- http://localhost:3000
-- http://localhost:3001
-- https://inutech.org.br
-- https://www.inutech.org.br
-
-Authorized redirect URIs:
-- http://localhost:3000/api/auth/callback/google
-- http://localhost:3001/api/auth/callback/google
-- https://inutech.org.br/api/auth/callback/google
-- https://www.inutech.org.br/api/auth/callback/google
-```
-
-5. Clique em **"Create"**
-6. **Copie o Client ID e Client Secret**
-
-### **5. Configurar Variáveis de Ambiente**
-
-Crie um arquivo `.env.local` na raiz do projeto:
+#### **Para Desenvolvimento Local**
+Edite o arquivo `.env.local`:
 
 ```env
-# Google OAuth Configuration
-GOOGLE_CLIENT_ID=seu_client_id_aqui
-GOOGLE_CLIENT_SECRET=seu_client_secret_aqui
-
-# NextAuth Configuration
-NEXTAUTH_URL=http://localhost:3000
-NEXTAUTH_SECRET=gerar_uma_chave_secreta_aleatoria
-
-# Database (SQLite for development)
+# Database
 DATABASE_URL="file:./dev.db"
 
-# Environment
-NODE_ENV=development
+# NextAuth
+NEXTAUTH_URL="http://localhost:17011"
+NEXTAUTH_SECRET="desenvolvimento-local-secret-key-2025"
+
+# Google OAuth - SUBSTITUA PELOS SEUS VALORES
+GOOGLE_CLIENT_ID="seu-client-id-aqui"
+GOOGLE_CLIENT_SECRET="seu-client-secret-aqui"
 ```
 
-### **6. Gerar NEXTAUTH_SECRET**
+#### **Para Produção (Vercel)**
+1. Acesse o dashboard do Vercel
+2. Vá para **Settings** > **Environment Variables**
+3. Adicione as variáveis:
+   ```
+   GOOGLE_CLIENT_ID = seu-client-id-aqui
+   GOOGLE_CLIENT_SECRET = seu-client-secret-aqui
+   NEXTAUTH_URL = https://seu-dominio.vercel.app
+   NEXTAUTH_SECRET = uma-chave-secreta-forte
+   ```
 
-Execute no terminal:
+### 4️⃣ **Reiniciar Aplicação**
 
-```bash
-openssl rand -base64 32
-```
-
-Ou use um gerador online de chaves secretas.
-
-### **7. Configurar Banco de Dados**
-
-Execute os comandos:
-
-```bash
-# Instalar dependências
-npm install
-
-# Gerar cliente Prisma
-npx prisma generate
-
-# Executar migrações
-npx prisma db push
-
-# Verificar banco
-npx prisma studio
-```
-
-### **8. Testar a Configuração**
-
-1. Inicie a aplicação:
+Após configurar as variáveis:
 
 ```bash
+# Parar o servidor (Ctrl+C)
+# Reiniciar
 npm run dev
 ```
 
-2. Acesse: `http://localhost:3000`
-3. Clique em "Entrar" no header
-4. Teste o login com um email `@inutech.org.br`
+## 🔍 **Verificação**
 
-## 🔒 Configurações de Segurança
+### ✅ **Teste Local**
+1. Acesse `http://localhost:17011`
+2. Clique em **Login**
+3. Selecione **Google**
+4. Deve redirecionar para o Google OAuth
+5. Após autorizar, deve retornar para o dashboard
+
+### ✅ **Teste de Produção**
+1. Faça deploy no Vercel
+2. Acesse a URL de produção
+3. Teste o login Google
+4. Verifique se redireciona corretamente
+
+## 🚨 **Problemas Comuns**
+
+### **Erro 500 - Internal Server Error**
+- ✅ **Causa**: Variáveis de ambiente não configuradas
+- ✅ **Solução**: Configurar `GOOGLE_CLIENT_ID` e `GOOGLE_CLIENT_SECRET`
+
+### **Erro 400 - Invalid Client**
+- ✅ **Causa**: Client ID incorreto
+- ✅ **Solução**: Verificar se copiou o Client ID correto
+
+### **Erro 403 - Access Denied**
+- ✅ **Causa**: Domínio não autorizado
+- ✅ **Solução**: Adicionar domínio nas **Authorized JavaScript origins**
+
+### **Redirect URI Mismatch**
+- ✅ **Causa**: URI de redirecionamento não configurada
+- ✅ **Solução**: Adicionar `/api/auth/callback/google` nas **Authorized redirect URIs**
+
+## 📋 **Checklist de Configuração**
+
+- [ ] Google Cloud Console configurado
+- [ ] Google+ API ativada
+- [ ] OAuth consent screen configurado
+- [ ] OAuth client criado
+- [ ] Client ID obtido
+- [ ] Client Secret obtido
+- [ ] Variáveis de ambiente configuradas
+- [ ] URIs de redirecionamento adicionadas
+- [ ] Aplicação reiniciada
+- [ ] Login testado localmente
+- [ ] Deploy testado em produção
+
+## 🔒 **Segurança**
+
+### **Proteção das Credenciais**
+- ✅ **Nunca** commite credenciais no Git
+- ✅ **Use** `.env.local` para desenvolvimento
+- ✅ **Configure** variáveis no Vercel para produção
+- ✅ **Rotacione** credenciais periodicamente
 
 ### **Domínios Permitidos**
+- ✅ **Desenvolvimento**: `localhost:17011`
+- ✅ **Produção**: Seu domínio Vercel
+- ✅ **Staging**: Domínio de teste (opcional)
 
-A aplicação está configurada para aceitar apenas emails do domínio `@inutech.org.br`.
+## 📞 **Suporte**
 
-### **Roles e Permissões**
+Se ainda houver problemas:
 
-- **Admin**: Acesso total
-- **Researcher**: Acesso a laboratórios e Obsidian
-- **Student**: Acesso limitado
-- **Guest**: Acesso básico
-
-### **Emails Administradores**
-
-```javascript
-adminEmails: [
-  'webmaster@inutech.org.br',
-  'andrehsiqueira@inutech.org.br',
-  'ismael.costa@inutech.org.br'
-]
-```
-
-## 🚨 Troubleshooting
-
-### **Erro: "client_id is required"**
-
-- Verifique se as variáveis de ambiente estão configuradas
-- Reinicie a aplicação após configurar o `.env.local`
-
-### **Erro: "Access Denied"**
-
-- Verifique se o email é do domínio `@inutech.org.br`
-- Confirme se o domínio está na lista de domínios autorizados
-
-### **Erro: "Invalid redirect URI"**
-
-- Verifique se as URIs de redirecionamento estão corretas no Google Console
-- Confirme se o `NEXTAUTH_URL` está correto
-
-### **Erro de Banco de Dados**
-
-- Execute `npx prisma generate`
-- Execute `npx prisma db push`
-- Verifique se o SQLite está funcionando
-
-## 📞 Suporte
-
-Para problemas com a configuração:
-
-- Email: `webmaster@inutech.org.br`
-- Documentação: [NextAuth.js](https://next-auth.js.org/)
-- Google Cloud: [OAuth 2.0](https://developers.google.com/identity/protocols/oauth2)
+1. **Verifique os logs** do console do navegador
+2. **Verifique os logs** do terminal do Next.js
+3. **Teste** com um projeto Google Cloud diferente
+4. **Contate**: contato@inutech.org.br
 
 ---
 
-**✅ Após seguir todos os passos, a autenticação Google estará funcionando perfeitamente!**
+**Desenvolvido com ❤️ pelo iNuTech iCT**  
+*Configuração Google OAuth v1.0 - Janeiro 2025*

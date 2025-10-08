@@ -1,8 +1,8 @@
-# iNuTech iCT - Plataforma de Pesquisa Científica v2025.9.2
+# iNuTech iCT - Plataforma de Pesquisa Científica v2025.10.1
 
 Uma plataforma moderna para divulgação científica, blog, revista científica e laboratórios virtuais do iNuTech iCT de Pesquisa Aplicada em Ciência, Tecnologia e Inovação.
 
-> **🎯 Versão 2025.9.2** - Plataforma otimizada e pronta para deploy no Vercel com Google Cloud como alternativa.
+> **🎯 Versão 2025.10.1** - Plataforma otimizada com Hero redesenhado, documentação completa de deploy, scripts automatizados e LGPD implementado.
 
 ## 🚀 Funcionalidades
 
@@ -29,7 +29,9 @@ Uma plataforma moderna para divulgação científica, blog, revista científica 
 - **Database**: Prisma ORM com SQLite
 - **UI Components**: Radix UI + Lucide React
 - **Markdown**: React Markdown para conteúdo
-- **Deploy**: Vercel (recomendado)
+- **Deploy**: Vercel (recomendado) + Debian/Nginx (produção)
+- **Process Manager**: PM2
+- **SSL**: Let's Encrypt
 
 ## 📋 Pré-requisitos
 
@@ -42,8 +44,8 @@ Uma plataforma moderna para divulgação científica, blog, revista científica 
 1. **Clone o repositório**
 
 ```bash
-git clone https://github.com/inutech/plataforma.git
-cd plataforma
+git clone https://github.com/IsmaelMouraCosta/inutech-plataforma.git
+cd inutech-plataforma
 ```
 
 2. **Instale as dependências**
@@ -65,7 +67,7 @@ Edite o arquivo `.env.local` com suas credenciais:
 DATABASE_URL="file:./dev.db"
 
 # NextAuth
-NEXTAUTH_URL="http://localhost:3000"
+NEXTAUTH_URL="http://localhost:17011"
 NEXTAUTH_SECRET="your-secret-key-here"
 
 # Google OAuth
@@ -79,7 +81,7 @@ GOOGLE_CLIENT_SECRET="your-google-client-secret"
 - Crie um novo projeto ou selecione um existente
 - Ative a API do Google+
 - Crie credenciais OAuth 2.0
-- Adicione `http://localhost:3000/api/auth/callback/google` como URI de redirecionamento
+- Adicione `http://localhost:17011/api/auth/callback/google` como URI de redirecionamento
 
 5. **Configure o banco de dados**
 
@@ -94,9 +96,85 @@ npx prisma db push
 npm run dev
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000)
+Acesse [http://localhost:17011](http://localhost:17011)
 
-## 📁 Estrutura do Projeto (v0.8.0)
+## ✨ Melhorias Recentes (v2025.9.3)
+
+### 🎨 Interface e UX
+- **Hero Component Redesenhado**: Layout moderno com animações fluidas
+- **Padding Otimizado**: Espaçamento superior ajustado para melhor hierarquia visual
+- **Animações Suaves**: Linhas onduladas animadas com gradientes
+- **Design Responsivo**: Melhor experiência em todos os dispositivos
+
+### 🚀 Deploy e Infraestrutura
+- **Documentação Completa**: Guias detalhados de deploy
+- **Scripts Automatizados**: Deploy, backup e rollback automatizados
+- **Múltiplas Opções**: Vercel, Debian/Nginx, Google Cloud
+- **SSL/HTTPS**: Configuração automática com Let's Encrypt
+- **Monitoramento**: PM2 com logs centralizados
+
+### 📚 Documentação
+- **QUICK_START.md**: Deploy em 3 passos
+- **PLANO_DEPLOY_PRD.md**: Guia completo (1475 linhas)
+- **Scripts de Verificação**: Validação automática de requisitos
+- **Troubleshooting**: Soluções para problemas comuns
+
+## 🚀 Deploy em Produção
+
+### Opção 1: Deploy Rápido (3 passos)
+
+```bash
+# 1. Configurar servidor (primeira vez)
+scp scripts/setup-server.sh masternutech@177.153.59.217:/tmp/
+ssh masternutech@177.153.59.217 'chmod +x /tmp/setup-server.sh && /tmp/setup-server.sh'
+
+# 2. Configurar DNS
+# Adicionar registro A: www.inutech.org.br → 177.153.59.217
+
+# 3. Deploy automático
+./scripts/deploy-to-server.sh
+```
+
+### Opção 2: Deploy Manual
+
+Consulte a documentação completa:
+- **[GUIA_DEPLOY.md](docs/deployment/GUIA_DEPLOY.md)** - Guia passo a passo
+- **[QUICK_START.md](docs/deployment/QUICK_START.md)** - Guia rápido
+- **[PLANO_DEPLOY_PRD.md](docs/deployment/PLANO_DEPLOY_PRD.md)** - Plano completo
+
+### Opções de Hospedagem
+
+| Plataforma | Custo | Dificuldade | Recomendado |
+|------------|-------|-------------|-------------|
+| **Vercel** | Gratuito | Fácil | ✅ Desenvolvimento |
+| **Debian + Nginx** | Servidor próprio (177.153.59.217) | Médio | ✅ Produção |
+| **Google Cloud** | Créditos nonprofit | Médio | ✅ Escalável |
+| **Railway** | $5/mês | Fácil | ✅ Alternativa |
+
+## 📊 Status do Projeto
+
+### ✅ Funcionalidades Implementadas
+- **Blog Científico**: Sistema completo com Markdown
+- **Revista Científica**: Publicações revisadas por pares
+- **Laboratórios Virtuais**: IA & ML, Robótica, Cibersegurança
+- **Autenticação**: Google OAuth com NextAuth.js
+- **Dashboard**: Área restrita para usuários
+- **Deploy**: Scripts automatizados e documentação completa
+
+### 🚧 Em Desenvolvimento
+- **Sistema de Eventos**: Calendário e gestão
+- **Laboratórios Avançados**: Prototipação com IA
+- **Área Restrita**: Funcionalidades premium
+- **Integração Obsidian**: Sistema de notas
+
+### 📈 Métricas
+- **Páginas**: 15+ páginas implementadas
+- **Componentes**: 20+ componentes React
+- **Documentação**: 2000+ linhas de documentação
+- **Scripts**: 5+ scripts de automação
+- **Cobertura**: 100% das funcionalidades principais
+
+## 📁 Estrutura do Projeto (v2025.9.3)
 
 ```
 ├── app/                    # Next.js 14 App Router
@@ -116,12 +194,22 @@ Acesse [http://localhost:3000](http://localhost:3000)
 │   └── revista/         # Artigos da revista
 ├── contexts/             # Contextos React
 ├── docs/                 # Documentação organizada
-│   ├── development/      # Arquitetura e desenvolvimento
+│   ├── dev/             # Arquitetura e desenvolvimento
 │   ├── deployment/       # Deploy e hospedagem
+│   │   ├── GUIA_DEPLOY.md        # Guia passo a passo
+│   │   ├── QUICK_START.md        # Deploy rápido
+│   │   ├── PLANO_DEPLOY_PRD.md   # Deploy completo
+│   │   └── RELEASE_SUMMARY_v2025.9.3.md
 │   ├── design/          # Design atual
 │   └── archive/         # Documentação histórica
 ├── lib/                  # Utilitários e configurações
 ├── prisma/               # Schema e migrações do banco
+├── scripts/              # Scripts de deploy e automação
+│   ├── setup-server.sh  # Configuração automática do servidor
+│   ├── deploy-to-server.sh  # Deploy automatizado
+│   └── deploy/          # Scripts de deploy
+│       └── check-server-requirements.sh
+├── ecosystem.config.js   # Configuração PM2
 └── public/               # Arquivos estáticos
     └── images/          # Todas as imagens consolidadas
         ├── logos/       # Logos do iNuTech
@@ -131,31 +219,38 @@ Acesse [http://localhost:3000](http://localhost:3000)
 
 ## 🎯 Próximos Passos
 
-### MVP (Fase 1)
+### MVP (Fase 1) ✅
 
 - [X] Estrutura básica do projeto
-- [X] Página inicial responsiva
+- [X] Página inicial responsiva com Hero redesenhado
 - [X] Sistema de autenticação Google
-- [X] Componentes UI base
+- [X] Componentes UI base (Radix UI)
 - [X] Blog com Markdown
+- [X] Revista científica
+- [X] Laboratórios virtuais
 - [X] Páginas institucionais
 - [X] Deploy inicial
+- [X] Documentação completa de deploy
+- [X] Scripts automatizados
 
-### Fase 2
+### Fase 2 (Em Desenvolvimento)
 
-- [ ] Revista científica
-- [ ] Laboratórios virtuais básicos
-- [ ] Sistema de eventos
+- [ ] Sistema de eventos completo
+- [ ] Laboratórios virtuais avançados
 - [ ] Integração com Obsidian
 - [ ] Área restrita funcional
+- [ ] Sistema de busca avançada
+- [ ] Newsletter funcional
 
-### Fase 3
+### Fase 3 (Futuro)
 
 - [ ] Laboratórios avançados (IA, prototipação)
 - [ ] Sistema de avaliação de inovação
 - [ ] Integração com LinkedIn
-- [ ] Analytics e métricas
+- [ ] Analytics e métricas avançados
 - [ ] Otimizações de performance
+- [ ] Sistema de comentários
+- [ ] Integração com redes sociais
 
 ## 🤝 Contribuição
 

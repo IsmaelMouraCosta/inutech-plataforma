@@ -15,9 +15,12 @@ import {
   Activity,
   Clock,
   Star,
-  Zap
+  Zap,
+  Monitor,
+  Server
 } from 'lucide-react'
 import Link from 'next/link'
+import { LGDPSSettings } from '@/components/lgpd-settings'
 
 export const metadata: Metadata = {
   title: 'Dashboard - iNuTech iCT',
@@ -100,6 +103,13 @@ export default async function DashboardPage() {
       icon: Settings,
       href: '/dashboard/settings',
       color: 'bg-orange-500'
+    },
+    {
+      title: 'Gerenciar Aplicações',
+      description: 'Monitorar e controlar aplicações',
+      icon: Monitor,
+      href: '/apps-management',
+      color: 'bg-indigo-500'
     }
   ]
 
@@ -187,6 +197,11 @@ export default async function DashboardPage() {
           </div>
         </div>
 
+        {/* Configurações LGPD */}
+        <div className="mb-8">
+          <LGDPSSettings />
+        </div>
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Ações Rápidas */}
           <div className="lg:col-span-2">
@@ -197,7 +212,7 @@ export default async function DashboardPage() {
                 </h2>
               </div>
               <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {quickActions.map((action) => (
                     <Link
                       key={action.title}

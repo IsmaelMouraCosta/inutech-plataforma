@@ -1,0 +1,41 @@
+# CRITICAL: PROTECTED FILES - NEVER MODIFY WITHOUT EXPLICIT PERMISSION
+.env*
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database files
+*.db
+*.db-journal
+prisma/dev.db*
+
+# Backup files
+*.backup
+*.bak
+*.old
+config.backup.*
+env.backup.*
+
+# Credentials and secrets
+credentials/
+secrets/
+keys/
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Configuration files that contain sensitive data
+config/
+auth-config.*
+database-config.*
+
+# Log files that might contain sensitive information
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/

@@ -9,7 +9,7 @@ export function ProjectsProcessesProductsSection() {
     {
       title: 'Aderir a Projetos',
       description: 'Participe de nossos projetos de pesquisa e desenvolvimento',
-      link: '/science/projects',
+      link: 'http://localhost:2000',
       icon: Target,
       color: 'from-blue-600 to-cyan-600',
       hoverColor: 'hover:from-blue-700 hover:to-cyan-700'
@@ -17,7 +17,7 @@ export function ProjectsProcessesProductsSection() {
     {
       title: 'Avaliar Projetos',
       description: 'Avalie seu projeto com nossa metodologia robusta',
-      link: '/tech/assessment',
+      link: 'http://localhost:1887',
       icon: Zap,
       color: 'from-green-600 to-emerald-600',
       hoverColor: 'hover:from-green-700 hover:to-emerald-700'
@@ -25,7 +25,7 @@ export function ProjectsProcessesProductsSection() {
     {
       title: 'Avaliar Inovação',
       description: 'Descubra o potencial de inovação do seu projeto',
-      link: '/innovation/starting',
+      link: 'http://localhost:1647',
       icon: Lightbulb,
       color: 'from-purple-600 to-pink-600',
       hoverColor: 'hover:from-purple-700 hover:to-pink-700'
@@ -50,8 +50,15 @@ export function ProjectsProcessesProductsSection() {
         <div className="grid md:grid-cols-3 gap-8">
           {ctaItems.map((item, index) => {
             const IconComponent = item.icon
+            const isExternalLink = item.link.startsWith('http')
+            
             return (
-              <Link key={index} href={item.link}>
+              <Link 
+                key={index} 
+                href={item.link}
+                target={isExternalLink ? '_blank' : undefined}
+                rel={isExternalLink ? 'noopener noreferrer' : undefined}
+              >
                 <div className={`group relative bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-slate-700 hover:border-transparent overflow-hidden`}>
                   {/* Background Gradient on Hover */}
                   <div className={`absolute inset-0 bg-gradient-to-r ${item.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>

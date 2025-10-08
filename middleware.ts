@@ -7,12 +7,10 @@ export default withAuth(
     const isAuth = !!token
     const isDashboardPage = req.nextUrl.pathname.startsWith('/dashboard')
     const isObsidianPage = req.nextUrl.pathname.startsWith('/obsidian')
-    const isRevistaPage = req.nextUrl.pathname.startsWith('/revista')
-    const isBlogPage = req.nextUrl.pathname.startsWith('/blog')
-    const isLaboratoriosPage = req.nextUrl.pathname.startsWith('/laboratorios')
+    const isAppsManagementPage = req.nextUrl.pathname.startsWith('/apps-management')
 
     // Se está tentando acessar área restrita e não está logado, redireciona para login
-    if ((isDashboardPage || isObsidianPage || isRevistaPage || isBlogPage || isLaboratoriosPage) && !isAuth) {
+    if ((isDashboardPage || isObsidianPage || isAppsManagementPage) && !isAuth) {
       return NextResponse.redirect(new URL('/auth/signin', req.url))
     }
 
@@ -29,8 +27,6 @@ export const config = {
   matcher: [
     '/dashboard/:path*',
     '/obsidian/:path*',
-    '/revista/:path*',
-    '/blog/:path*',
-    '/laboratorios/:path*'
+    '/apps-management/:path*'
   ]
 }
